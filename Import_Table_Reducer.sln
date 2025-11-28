@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Import_Table_Reducer", "Import_Table_Reducer.vcxproj", "{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Debug|x64.ActiveCfg = Debug|x64
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Debug|x64.Build.0 = Debug|x64
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Debug|x86.ActiveCfg = Debug|Win32
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Debug|x86.Build.0 = Debug|Win32
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Release|x64.ActiveCfg = Release|x64
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Release|x64.Build.0 = Release|x64
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Release|x86.ActiveCfg = Release|Win32
+		{0BCE66A7-406E-4A71-8A1E-D2D0CDC0EDFF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F241C1D-A781-4C9F-8B40-61C6F5ACD223}
+	EndGlobalSection
+EndGlobal
