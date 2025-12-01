@@ -1,0 +1,12 @@
+XP1:
+
+TC01 – 
+Success Given: A JSON File path; When: LoadConfig() is called, Then: The code must successfully verify the JSON and then internally parse and load it
+Failure: Otherwise
+TC02 – 
+Success Given: A JSON File is loaded; When: getAPIList(), Then: The code must return all API Names from the JSON in a list.
+Failure: Otherwise
+TC03 – 
+Success Given: Valid API Name; When: getStruct(), Then: The code must return the structure for the API name given.
+Failure: Otherwise
+
