@@ -18,7 +18,7 @@ public:
 class JSONVerifier {
 public:
 	JSONVerifier() : IsValid(false) {}
-	bool VerifyStruct();
+	bool VerifyStruct(const std::string& filePath);
 private:
 	bool IsValid;
 };

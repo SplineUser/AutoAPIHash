@@ -30,3 +30,24 @@ std::vector<APIStruct> JSONParser::ParseJson(const std::string& filePath) {
 	return APIList;
 }
 
+bool JSONVerifier::VerifyStruct(const std::string& filePath) {
+	std::ifstream JSONFile(filePath);
+	if (!JSONFile.is_open()) return false;
+
+	json j;
+	try {
+		JSONFile >> j;
+	}
+	catch (...) {
+		return false;
+	}
+
+	for (const auto& k : j) {
+		if (!k.contains("name") || !k["name"].is_string()) return false;
+		if (!k.contains("rename") || !k["rename"].is_string()) return false;
+		if (!k.contains("ReturnType") || !k["ReturnType"].is_string()) return false;
+		if (!k.contains("Parameters") || !k["Parameters"].is_array()) return false;
+	}
+
+	return true;
+}
