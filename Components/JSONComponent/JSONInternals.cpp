@@ -48,6 +48,8 @@ bool JSONVerifier::VerifyStruct(const std::string& filePath) {
 		if (!k.contains("ReturnType") || !k["ReturnType"].is_string()) return false;
 		if (!k.contains("Parameters") || !k["Parameters"].is_array()) return false;
 	}
-
+	IsValid = true;
 	return true;
 }
+
+
