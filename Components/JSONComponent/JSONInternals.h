@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 
@@ -16,7 +17,7 @@ public:
 
 class JSONVerifier {
 public:
-	bool JSONVerifier() : IsValid(false) {}
+	JSONVerifier() : IsValid(false) {}
 	bool VerifyStruct();
 private:
 	bool IsValid;
@@ -24,8 +25,8 @@ private:
 
 class ConfigMapper {
 public:
-	void SetAPIName(std::vector<APIStruct>& apiList) {
-		apiList = APIs;
+	void SetAPIList(std::vector<APIStruct>& apiList) {
+		APIs = apiList;
 	}
 	const std::vector<APIStruct>& GetAPIList() const {
 		return APIs;
