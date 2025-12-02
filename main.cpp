@@ -1,4 +1,4 @@
-#include "Components/JSONComponent/JSONConfigManager.cpp"
+#include "Components/JSONComponent/JSONConfigManager.h"
 #include "Components/JSONComponent/APIStruct.h"
 #include <string>
 #include <vector>
