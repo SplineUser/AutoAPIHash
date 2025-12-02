@@ -1,5 +1,6 @@
 #include "JSONConfigManager.h"
 #include "JSONInternals.h"
+#include "APIStruct.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -21,7 +22,7 @@ bool JSONConfigManager::LoadConfig(std::string& filePath) {
 	return true;
 }
 
-std::vector<std::string> getAPIList(){
+std::vector<std::string> JSONConfigManager::getAPIList(){
 	std::vector<std::string> APIList;
 	for (auto& k : PerapiList) {
 		APIList.push_back(k.name);
@@ -29,7 +30,7 @@ std::vector<std::string> getAPIList(){
 	return APIList;
 }
 
-APIStruct getAPIStruct(std::string& apiName) {
+APIStruct JSONConfigManager::getAPIStruct(std::string& apiName) {
 	for (auto& api : PerapiList) {
 		if (api.name == apiName) {
 			return api;

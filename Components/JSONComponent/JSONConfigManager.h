@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include "APIStruct.h"
 #include "JSONInternals.h"
 
 class JSONConfigManager {

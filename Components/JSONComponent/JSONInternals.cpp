@@ -1,4 +1,5 @@
 #include "JSONInternals.h"
+#include "APIStruct.h"
 #include "externals/json.hpp"
 #include <string>
 #include <vector>
