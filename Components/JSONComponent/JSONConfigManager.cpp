@@ -22,10 +22,10 @@ bool JSONConfigManager::LoadConfig(std::string& filePath) {
 	return true;
 }
 
-std::vector<std::string> JSONConfigManager::getAPIList(){
-	std::vector<std::string> APIList;
+std::vector<std::pair<std::string, std::string>> JSONConfigManager::getAPIList(){
+	std::vector<std::pair<std::string, std::string>> APIList;
 	for (auto& k : PerapiList) {
-		APIList.push_back(k.name);
+		APIList.push_back({ k.name, k.rename });
 	}
 	return APIList;
 }

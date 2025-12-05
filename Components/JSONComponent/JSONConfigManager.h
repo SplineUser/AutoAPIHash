@@ -6,7 +6,7 @@
 class JSONConfigManager {
 public:
 	bool LoadConfig(std::string& filePath);
-	std::vector<std::string> getAPIList();
+	std::vector<std::pair<std::string, std::string>> getAPIList();
 	APIStruct getAPIStruct(std::string& apiName);
 private:
 	std::vector<APIStruct> PerapiList;

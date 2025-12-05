@@ -10,3 +10,9 @@ TC03 –
 Success Given: Valid API Name; When: getStruct(), Then: The code must return the structure for the API name given.
 Failure: Otherwise
 
+XP2:
+TC01 -
+Success Given: FilePath, APIList_set, When: RenameAPI() Called, Then: Renames every API to via the set.
+Failure: Otherwise
+
+

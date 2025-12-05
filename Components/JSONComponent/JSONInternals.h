@@ -14,10 +14,7 @@ public:
 
 class JSONVerifier {
 public:
-	JSONVerifier() : IsValid(false) {}
 	bool VerifyStruct(const std::string& filePath);
-private:
-	bool IsValid;
 };
 
 class ConfigMapper {
