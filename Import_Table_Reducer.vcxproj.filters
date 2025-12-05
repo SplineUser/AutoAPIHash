@@ -24,6 +24,12 @@
     <ClCompile Include="Components\JSONComponent\JSONInternals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\SourceComponent\SourceInternals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SourceComponent\SourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\JSONComponent\APIStruct.h">
@@ -33,6 +39,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\JSONComponent\JSONInternals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SourceComponent\SourceInternals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SourceComponent\SourceManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

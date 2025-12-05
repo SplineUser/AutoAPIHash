@@ -5,7 +5,7 @@ class SourceTransform {
 public:
 	void setFilePath(std::string filePath);
 	bool LoadFile();
-	bool ReplaceText(std::vector<std::pair<std::string, std::string>>& APIList);
+	bool ReplaceText(const std::vector<std::pair<std::string, std::string>>& APIList);
 	bool SaveFile();
 private:
 	std::string PerfilePath;

@@ -3,5 +3,5 @@
 
 class SourceReplace {
 public:
-	bool RenameText(std::string& filePath, std::vector<std::pair<std::string, std::string>>& APIList);
+	void RenameText(std::string& filePath, std::vector<std::pair<std::string, std::string>>& APIList);
 };
