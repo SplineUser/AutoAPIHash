@@ -10,21 +10,26 @@ bool StubManager::WriteAllStubs(std::string SourcefilePath,
     std::vector<APIStruct> apiSList,
     std::string StubFilePath)
 {
-    APIDetector::ParseSource(SourcefilePath);
-    std::vector<std::string> apiFoundList = APIDetector::FindAPI(APIList);
+    APIDetector detector;
+    detector.ParseSource(SourcefilePath);
+    std::vector<std::string> apiFoundList = detector.FindAPI(APIList);
 
     std::unordered_set<std::string> foundSet(apiFoundList.begin(), apiFoundList.end());
     std::unordered_set<std::string> written;
     bool wroteAnything = false;
 
+    StubCreator creator;
+
     for (auto& apiStruct : apiSList) {
+        // Only write stubs for APIs that were found in the source
         if (foundSet.find(apiStruct.name) != foundSet.end()) {
+            // Skip if we already wrote this API
             if (written.find(apiStruct.name) != written.end()) continue;
 
-            std::vector<std::string> createdStub = StubCreator::CreateStub(apiStruct);
-            bool result = StubCreator::WriteStub(StubFilePath, createdStub);
+            std::vector<std::string> createdStub = creator.CreateStub(apiStruct);
+            bool result = creator.WriteStub(StubFilePath, createdStub);
 
-            if (!result) return false;
+            if (!result) return false; // Stop if writing fails
 
             written.insert(apiStruct.name);
             wroteAnything = true;

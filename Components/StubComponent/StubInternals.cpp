@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-
+#include <unordered_set>
 
 
 void APIDetector::ParseSource(std::string SourcefilePath) {
@@ -12,11 +12,11 @@ void APIDetector::ParseSource(std::string SourcefilePath) {
 	std::string line;
 
 	if (!sf.is_open()) {
-		std::cerr << "Error opening: " << sourceFilePath << "\n";
+		std::cerr << "Error opening: " << SourcefilePath << "\n";
 		return;
 	}
 
-	while (std::getline(sf, line) {
+	while (std::getline(sf, line)) {
 		SourceLines.push_back(line);
 	}
 }
@@ -25,7 +25,7 @@ std::vector<std::string> APIDetector::FindAPI(std::vector<std::pair<std::string,
     std::unordered_set<std::string> detected;
 
     for (const auto& api : APIList) {
-        for (const auto& line : sourceLines) {
+        for (const auto& line : SourceLines) {
             size_t pos = 0;
             while ((pos = line.find(api.first, pos)) != std::string::npos) {
                 detected.insert(api.first);
@@ -53,8 +53,8 @@ std::vector<std::string> StubCreator::CreateStub(const APIStruct& apiS)
     std::string typedefLine =
         "typedef " + apiS.returnType + " (WINAPI* " + apiS.rename + ")(" + paramList + ");";
     std::string resolverLine =
-        apiS.rename + " m" + apiS.rename + " = (" + apiS.rename + ")APIHashing::ResolveProcByHash("
-        "APIHashing::FetchModuleBaseByName(L\"" + apiS.ModuleName + "\"), "
+        apiS.rename + " m" + apiS.rename + " = (" + apiS.rename + ")ResolveProcByHash("
+        "FetchModuleBaseByName(L\"" + apiS.ModuleName + "\"), "
         + std::to_string(apiS.hash) + ");";
 
     stubs.push_back(typedefLine);

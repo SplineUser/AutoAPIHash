@@ -5,16 +5,50 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
+
+
+bool PrependSourceHeader(const std::string& filePath) {
+    std::ifstream in(filePath);
+    if (!in.is_open()) {
+        return false;
+    }
+
+    // Read entire file into memory
+    std::string original((std::istreambuf_iterator<char>(in)),
+        std::istreambuf_iterator<char>());
+    in.close();
+
+    // Prepend your include directive
+    std::string updated = "#include \"Stub_Header.h\"\n\n" + original;
+
+    // Write back to the same file
+    std::ofstream out(filePath, std::ios::trunc);
+    if (!out.is_open()) {
+        return false;
+    }
+
+    out << updated;
+    out.close();
+    return true;
+}
+
 
 
 int main() {
     std::string JSONfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\api_list.json";
     std::string SourcefilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\FileLocation.cpp";
-    std::string StubfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\FileLocation.cpp";
+    std::string StubfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\Stub_Header.h";
 
     JSONConfigManager mJCM;
     SourceReplace mSR;
     StubManager mStubR;
+
+    bool res = PrependSourceHeader(SourcefilePath);
+    if (!res) {
+        std::cout << "Error prepending" << std::endl;
+    }
+
 
     mJCM.LoadConfig(JSONfilePath);
     std::vector<std::pair<std::string, std::string>> APIList = mJCM.getAPIList();

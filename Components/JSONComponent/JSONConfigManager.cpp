@@ -31,9 +31,10 @@ std::vector<std::pair<std::string, std::string>> JSONConfigManager::getAPIList()
 }
 
 APIStruct JSONConfigManager::getAPIStruct(std::string& apiName) {
-	for (auto& api : PerapiList) {
-		if (api.name == apiName) {
-			return api;
-		}
-	}
+    for (auto& api : PerapiList) {
+        if (api.name == apiName) {
+            return api;
+        }
+    }
+    return APIStruct{};
 }
