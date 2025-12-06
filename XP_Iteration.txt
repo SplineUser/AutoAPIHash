@@ -15,4 +15,9 @@ TC01 -
 Success Given: FilePath, APIList_set, When: RenameAPI() Called, Then: Renames every API to via the set.
 Failure: Otherwise
 
+XP3:
+TC01 – 
+Success: Given: sourcePath and APIList and external headerfile; CreateStubs() is called, Then: Write the stub in the external file.
+Failure: Otherwise
+
 
