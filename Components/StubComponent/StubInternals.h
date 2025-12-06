@@ -5,7 +5,7 @@
 class APIDetector {
 public:
 	void ParseSource(std::string SourcefilePath);
-	std::vector<std::string> FindAPI(const std::vector<std::pair<std::string, std::string>>& APIList);
+	std::vector<std::string> FindAPI(std::vector<std::pair<std::string, std::string>>& APIList);
 private:
 	std::vector<std::string> SourceLines;
 };

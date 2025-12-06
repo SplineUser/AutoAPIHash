@@ -21,7 +21,7 @@ void APIDetector::ParseSource(std::string SourcefilePath) {
 	}
 }
 
-std::vector<std::string> APIDetector::FindAPI(const std::vector<std::pair<std::string, std::string>>& APIList) {
+std::vector<std::string> APIDetector::FindAPI(std::vector<std::pair<std::string, std::string>>& APIList) {
     std::unordered_set<std::string> detected;
 
     for (const auto& api : APIList) {
@@ -73,8 +73,7 @@ OS mOS = (OS)APIHashing::ResolveProcByHash(APIHashing::FetchModuleBaseByName(L"A
 */
 
 
-bool StubCreator::WriteStub(const std::string& StubFilePath,
-    const std::vector<std::string>& stub)
+bool StubCreator::WriteStub(const std::string& StubFilePath, const std::vector<std::string>& stub)
 {
     std::ofstream outFile(StubFilePath, std::ios::app);
 

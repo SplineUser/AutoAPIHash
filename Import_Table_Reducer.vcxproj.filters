@@ -30,6 +30,12 @@
     <ClCompile Include="Components\SourceComponent\SourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\StubComponent\StubInternals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\StubComponent\StubManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\JSONComponent\APIStruct.h">
@@ -45,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\SourceComponent\SourceManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\StubComponent\StubInternals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\StubComponent\StubManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

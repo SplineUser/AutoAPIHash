@@ -130,6 +130,8 @@
     <ClCompile Include="Components\JSONComponent\JSONInternals.cpp" />
     <ClCompile Include="Components\SourceComponent\SourceInternals.cpp" />
     <ClCompile Include="Components\SourceComponent\SourceManager.cpp" />
+    <ClCompile Include="Components\StubComponent\StubInternals.cpp" />
+    <ClCompile Include="Components\StubComponent\StubManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +140,8 @@
     <ClInclude Include="Components\JSONComponent\JSONInternals.h" />
     <ClInclude Include="Components\SourceComponent\SourceInternals.h" />
     <ClInclude Include="Components\SourceComponent\SourceManager.h" />
+    <ClInclude Include="Components\StubComponent\StubInternals.h" />
+    <ClInclude Include="Components\StubComponent\StubManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
