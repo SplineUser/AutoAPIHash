@@ -1,12 +1,12 @@
 #include <string>
 #include <vector>
 
-class HelpMenu{
+class HelpMenu {
 public:
 	void displayHelp();
-}
+};
 
-class ArgsExec{
+class ArgsExec {
 public:
 	bool ValidateArgs(int argc, char* argv[]);
-}
+};

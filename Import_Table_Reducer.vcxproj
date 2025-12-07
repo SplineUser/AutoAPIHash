@@ -124,6 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\CLIComponent\CLI_Interface.cpp" />
+    <ClCompile Include="Components\CLIComponent\CLI_Internals.cpp" />
     <ClCompile Include="Components\JSONComponent\JSONConfigManager.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Components;$(ProjectDir)Externals</AdditionalIncludeDirectories>
     </ClCompile>
@@ -135,6 +137,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\CLIComponent\CLI_Interface.h" />
+    <ClInclude Include="Components\CLIComponent\CLI_Internals.h" />
     <ClInclude Include="Components\JSONComponent\APIStruct.h" />
     <ClInclude Include="Components\JSONComponent\JSONConfigManager.h" />
     <ClInclude Include="Components\JSONComponent\JSONInternals.h" />

@@ -1,4 +1,4 @@
 class CLI_Interface {
 public:
-    void CLIRun(int argc, char* argv[]);
+    bool CLIRun(int argc, char* argv[]);
 };

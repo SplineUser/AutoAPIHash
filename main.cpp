@@ -35,7 +35,9 @@ bool PrependSourceHeader(const std::string& filePath) {
 
 int main(int argc, char* argv[]) {
     CLI_Interface cliI;
-    cliI.CLIRun(argc, argv);
+    if (!cliI.CLIRun(argc, argv)) {
+        return 0;
+    }
     std::string JSONfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\api_list.json";
     std::string SourcefilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\FileLocation.cpp";
     std::string StubfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\Stub_Header.h";

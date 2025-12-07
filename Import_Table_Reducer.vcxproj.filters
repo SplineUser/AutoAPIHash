@@ -36,6 +36,12 @@
     <ClCompile Include="Components\StubComponent\StubManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\CLIComponent\CLI_Interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CLIComponent\CLI_Internals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\JSONComponent\APIStruct.h">
@@ -57,6 +63,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\StubComponent\StubManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CLIComponent\CLI_Interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CLIComponent\CLI_Internals.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
