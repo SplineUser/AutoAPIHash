@@ -44,18 +44,15 @@ The tool follows a component-based design with clear separation of concerns:
 ### Prerequisites
 
 - C++ compiler (GCC/MinGW/MSVC)
-- Python 3.8+ (if using Python wrapper)
 - VirusTotal API key
-- CMake 3.15+ (for building from source)
+- MSVS for building
 
 ### Building from Source
 
 ```bash
 git clone https://github.com/SplineUser/AutoAPIHash.git
 cd AutoAPIHash
-mkdir build && cd build
-cmake ..
-make
+build via MSVS
 ```
 
 ### Configuration
@@ -75,20 +72,17 @@ Create a `config.json` file with your VirusTotal API key:
 ### Basic Usage
 
 ```bash
-./autoapi_hash --source program.cpp --config apis.json --output optimized.exe
+   ./autoapihash.exe -i myfile.cpp -j api_list.json -s headerfile.h
 ```
 
 ### Advanced Options
 
 ```bash
 ./autoapi_hash \
-  --source program.cpp \
-  --config apis.json \
-  --output optimized.exe \
-  --iterations 100 \
-  --compiler gcc \
-  --optimization-level 2 \
-  --verbose
+   -i <input>     Specify input C/CPP File
+   -j             Set path to JSON API File
+   -s             Set path to source header file
+   -h, --help     Show this help menu
 ```
 
 ### Configuration File Format
@@ -96,29 +90,28 @@ Create a `config.json` file with your VirusTotal API key:
 Define your target APIs in a JSON configuration file:
 
 ```json
+[{
+    "name": "VirtualAlloc",
+    "rename": "myVirtualAlloc",
+    "ReturnType": "LPVOID",
+    "Parameters": ["LPVOID", "SIZE_T", "DWORD", "DWORD"],
+    "ModuleName":"Kernel32.dll",
+    "Hash": 53423
+},
+
 {
-  "apis": [
-    {
-      "name": "CreateProcessA",
-      "module": "kernel32.dll",
-      "hash_algorithm": "djb2",
-      "parameters": ["LPCSTR", "LPSTR", "..."]
-    },
-    {
-      "name": "VirtualAlloc",
-      "module": "kernel32.dll",
-      "hash_algorithm": "fnv1a",
-      "parameters": ["LPVOID", "SIZE_T", "DWORD", "DWORD"]
-    }
-  ],
-  "hash_algorithms": ["djb2", "fnv1a", "crc32", "sdbm"],
-  "optimization_strategy": "genetic"
-}
+    "name": "VirtualFree",
+    "rename": "myVirtualFree",
+    "ReturnType": "BOOL",
+    "Parameters": ["LPVOID", "SIZE_T", "DWORD"],
+    "ModuleName":"Kernel32.dll",
+    "Hash": 2344234
+}]
 ```
 
 ## 🔧 API Hashing Algorithms Supported
 
-- **DJB2**: Fast, simple hash function
+- **DJB2**: Fast, simple hash function (Implemented)
 - **FNV-1a**: Fowler-Noll-Vo hash function
 - **CRC32**: Cyclic redundancy check
 - **SDBM**: Hash function from SDBM database
@@ -167,10 +160,6 @@ Implements optimization algorithms (genetic, simulated annealing, hill climbing)
 
 The project follows Test-Driven Development (TDD) principles with comprehensive test coverage:
 
-```bash
-cd tests
-./run_tests.sh
-```
 
 Test suites cover:
 - JSON parsing and validation
@@ -208,9 +197,9 @@ This tool is developed for **educational and authorized security research purpos
 
 ## 🔗 Links
 
-- [Documentation](https://github.com/SplineUser/AutoAPIHash/wiki)
-- [Issue Tracker](https://github.com/SplineUser/AutoAPIHash/issues)
-- [Changelog](CHANGELOG.md)
+- [Documentation](https://github.com/SplineUser/AutoAPIHash/wiki) (Not Implemented!)
+- [Issue Tracker](https://github.com/SplineUser/AutoAPIHash/issues) (Not Implemented!)
+- [Changelog](CHANGELOG.md) (Not Implemented!)
 
 ## 👤 Author
 
@@ -218,11 +207,7 @@ This tool is developed for **educational and authorized security research purpos
 
 - GitHub: [@SplineUser](https://github.com/SplineUser)
 
-## 🙏 Acknowledgments
 
-- VirusTotal API for detection analysis
-- The security research community
-- Contributors and testers
 
 ---
 
