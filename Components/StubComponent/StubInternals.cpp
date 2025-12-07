@@ -51,9 +51,9 @@ std::vector<std::string> StubCreator::CreateStub(const APIStruct& apiS)
             paramList += ", ";
     }
     std::string typedefLine =
-        "typedef " + apiS.returnType + " (WINAPI* " + apiS.rename + ")(" + paramList + ");";
+        "typedef " + apiS.returnType + " (WINAPI* " + "m"+apiS.rename + ")(" + paramList + ");";
     std::string resolverLine =
-        apiS.rename + " m" + apiS.rename + " = (" + apiS.rename + ")ResolveProcByHash("
+        "m"+apiS.rename + " " + apiS.rename + " = (" + "m"+apiS.rename + ")ResolveProcByHash("
         "FetchModuleBaseByName(L\"" + apiS.ModuleName + "\"), "
         + std::to_string(apiS.hash) + ");";
 

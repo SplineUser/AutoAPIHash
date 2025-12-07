@@ -38,9 +38,9 @@ int main(int argc, char* argv[]) {
     if (!cliI.CLIRun(argc, argv)) {
         return 0;
     }
-    std::string JSONfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\api_list.json";
-    std::string SourcefilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\FileLocation.cpp";
-    std::string StubfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\Stub_Header.h";
+    std::string JSONfilePath = argv[4];
+    std::string SourcefilePath = argv[2];
+    std::string StubfilePath = argv[6];
 
     JSONConfigManager mJCM;
     SourceReplace mSR;

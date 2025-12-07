@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
 
 using json = nlohmann::json;
 using ifstream = std::ifstream;
@@ -12,6 +13,7 @@ std::vector<APIStruct> JSONParser::ParseJson(const std::string& filePath) {
     std::vector<APIStruct> APIList;
     std::ifstream JSONFile(filePath);
     if (!JSONFile.is_open()) {
+        std::cout << "JSON FILE NOT FOUND!" << std::endl;
         return {};
     }
 

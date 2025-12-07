@@ -20,4 +20,11 @@ TC01 –
 Success: Given: sourcePath and APIList and external headerfile; CreateStubs() is called, Then: Write the stub in the external file.
 Failure: Otherwise
 
+XP4:
+Easy change
+
+XP5:
+Success: Given: Correct Arguments; When: The program is executed; Then: Execute the program.
+Failure: Given: Incorrect Arguments; When: The program is executed; Then: Showcase help screen.
+
 

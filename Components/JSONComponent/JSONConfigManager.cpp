@@ -10,6 +10,8 @@
 bool JSONConfigManager::LoadConfig(std::string& filePath) {
 	JSONVerifier mJV;
 
+
+
 	bool Verified = mJV.VerifyStruct(filePath);
 	if (!Verified) {
 		std::cout << "JSON File Invalid. Please ensure the structure of the JSON!" << std::endl;
