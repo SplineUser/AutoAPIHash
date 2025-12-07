@@ -31,6 +31,12 @@ bool PrependSourceHeader(const std::string& filePath) {
     return true;
 }
 
+bool CompileGeneratedCode(const std::string& cppFile) {
+    std::string cmd =
+        R"(C:\Users\Priyan\source\repos\Import_Table_Reducer\x64\Debug\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4\mingw64\bin\g++.exe )" + cppFile +" -o payload.exe";
+
+    return system(cmd.c_str()) == 0;
+}
 
 
 int main(int argc, char* argv[]) {
@@ -66,6 +72,8 @@ int main(int argc, char* argv[]) {
 
 
     mStubR.WriteAllStubs(SourcefilePath, APIList, apiSList, StubfilePath);
+
+    CompileGeneratedCode(SourcefilePath);
 
     return 0;
 }
