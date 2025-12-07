@@ -2,6 +2,7 @@
 #include "Components/JSONComponent/APIStruct.h"
 #include "Components/SourceComponent/SourceManager.h"
 #include "Components/StubComponent/StubManager.h"
+#include "Components/CLIComponent/CLI_Interface.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -14,15 +15,12 @@ bool PrependSourceHeader(const std::string& filePath) {
         return false;
     }
 
-    // Read entire file into memory
     std::string original((std::istreambuf_iterator<char>(in)),
         std::istreambuf_iterator<char>());
     in.close();
 
-    // Prepend your include directive
     std::string updated = "#include \"Stub_Header.h\"\n\n" + original;
 
-    // Write back to the same file
     std::ofstream out(filePath, std::ios::trunc);
     if (!out.is_open()) {
         return false;
@@ -35,7 +33,9 @@ bool PrependSourceHeader(const std::string& filePath) {
 
 
 
-int main() {
+int main(int argc, char* argv[]) {
+    CLI_Interface cliI;
+    cliI.CLIRun(argc, argv);
     std::string JSONfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\api_list.json";
     std::string SourcefilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\FileLocation.cpp";
     std::string StubfilePath = "C:\\Users\\Priyan\\source\\repos\\Import_Table_Reducer\\x64\\Debug\\Stub_Header.h";
@@ -60,6 +60,7 @@ int main() {
         APIStruct apiS = mJCM.getAPIStruct(apiName);
         apiSList.push_back(apiS);
     }
+
 
 
     mStubR.WriteAllStubs(SourcefilePath, APIList, apiSList, StubfilePath);

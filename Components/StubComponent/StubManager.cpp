@@ -1,6 +1,7 @@
 #include "StubManager.h"
 #include "StubInternals.h"
 #include "../JSONComponent/APIStruct.h"
+#include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_set>
@@ -32,6 +33,7 @@ bool StubManager::WriteAllStubs(std::string SourcefilePath,
             if (!result) return false; // Stop if writing fails
 
             written.insert(apiStruct.name);
+            std::cout << "* Hashing API: " << apiStruct.name << std::endl;
             wroteAnything = true;
         }
     }
