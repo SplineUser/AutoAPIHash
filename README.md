@@ -135,7 +135,7 @@ This tool is developed for **educational and authorized security research purpos
 
 - [Documentation](https://github.com/SplineUser/AutoAPIHash/wiki) (Not Implemented!)
 - [Issue Tracker](https://github.com/SplineUser/AutoAPIHash/issues) (Not Implemented!)
-- [Changelog](CHANGELOG.md) (Not Implemented!)
+- [Changelog](Changelog.txt) 
 
 ## The Author
 
