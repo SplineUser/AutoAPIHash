@@ -33,13 +33,20 @@ bool PrependSourceHeader(const std::string& filePath) {
 
 bool CompileGeneratedCode(const std::string& cppFile) {
     std::string cmd =
-        R"(C:\Users\Priyan\source\repos\Import_Table_Reducer\x64\Debug\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4\mingw64\bin\g++.exe )" + cppFile +" -o payload.exe";
+        R"(".\compiler\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4\mingw64\bin\g++.exe" )"  
+        + cppFile +
+        " -static -static-libgcc -static-libstdc++ -o payload.exe";
+
+    std::cout << "CMD = " << cmd << std::endl;
 
     return system(cmd.c_str()) == 0;
 }
 
 
+
+
 int main(int argc, char* argv[]) {
+    
     CLI_Interface cliI;
     if (!cliI.CLIRun(argc, argv)) {
         return 0;
@@ -47,6 +54,7 @@ int main(int argc, char* argv[]) {
     std::string JSONfilePath = argv[4];
     std::string SourcefilePath = argv[2];
     std::string StubfilePath = argv[6];
+
 
     JSONConfigManager mJCM;
     SourceReplace mSR;

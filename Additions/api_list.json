@@ -1,0 +1,38 @@
+[{
+    "name": "VirtualAlloc",
+    "rename": "myVirtualAlloc",
+    "ReturnType": "LPVOID",
+    "Parameters": ["LPVOID", "SIZE_T", "DWORD", "DWORD"],
+    "ModuleName":"Kernel32.dll",
+    "Hash": 53423
+},
+
+{
+    "name": "VirtualFree",
+    "rename": "myVirtualFree",
+    "ReturnType": "BOOL",
+    "Parameters": ["LPVOID", "SIZE_T", "DWORD"],
+    "ModuleName":"Kernel32.dll",
+    "Hash": 2344234
+},
+
+{
+    "name": "Strncpy",
+    "rename": "myStrncpy",
+    "ReturnType": "BOOL",
+    "Parameters": ["UniqueParam", "SIZE_T", "DWORD"],
+    "ModuleName":"advapi.dll",
+    "Hash": 324343
+},
+
+{
+    "name": "RandomAPI",
+    "rename": "myRandomAPI",
+    "ReturnType": "VOID",
+    "Parameters": ["MYVOID", "SIZE_T", "DWORD"],
+    "ModuleName":"NotMyDLL.dll",
+    "Hash": 42243
+}
+
+
+]
