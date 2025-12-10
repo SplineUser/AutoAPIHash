@@ -18,6 +18,7 @@ Options:
   -i <input>     Specify input C/CPP File
   -j             Set path to JSON API File
   -s             Set path to source header file 
+  -v             For enabling Virustotal scans
   -h, --help     Show this help menu
 
 Examples:

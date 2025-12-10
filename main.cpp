@@ -4,92 +4,97 @@
 #include "Components/StubComponent/StubManager.h"
 #include "Components/CLIComponent/CLI_Interface.h"
 #include "Helper/LoadAPI.h"
+
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <sys/stat.h>
 
+using namespace std;
 
-bool PrependSourceHeader(const std::string& filePath) {
-    std::ifstream in(filePath);
-    if (!in.is_open()) {
-        return false;
-    }
+bool file_exists(const string& path)
+{
+    struct stat buffer {};
+    return (stat(path.c_str(), &buffer) == 0);
+}
 
-    std::string original((std::istreambuf_iterator<char>(in)),
-        std::istreambuf_iterator<char>());
+bool PrependSourceHeader(const string& filePath)
+{
+    if (!file_exists(filePath)) return false;
+
+    ifstream in(filePath);
+    if (!in.is_open()) return false;
+
+    string original((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());
     in.close();
 
-    std::string updated = "#include \"Stub_Header.h\"\n\n" + original;
+    ofstream out(filePath, ios::trunc);
+    if (!out.is_open()) return false;
 
-    std::ofstream out(filePath, std::ios::trunc);
-    if (!out.is_open()) {
-        return false;
-    }
-
-    out << updated;
+    out << "#include \"Stub_Header.h\"\n\n" << original;
     out.close();
     return true;
 }
 
-bool CompileGeneratedCode(const std::string& cppFile) {
-    std::string cmd =
-        R"(".\compiler\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4\mingw64\bin\g++.exe" )"  
-        + cppFile +
-        " -static -static-libgcc -static-libstdc++ -o payload.exe";
+bool CompileGeneratedCode(const string& cppFile)
+{
+    string cmd = R"(".\compiler\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4\mingw64\bin\g++.exe" )"
+        + cppFile + " -static -static-libgcc -static-libstdc++ -o output.exe";
 
-    std::cout << "CMD = " << cmd << std::endl;
-
+    cout << "[+] Compiling with MinGW...\nCMD = " << cmd << endl;
     return system(cmd.c_str()) == 0;
 }
 
+bool RunVirusTotalScan(const string& filePath, const string& apiKey)
+{
+    if (apiKey.empty() || !file_exists(filePath)) return false;
 
+    system("python3 -m pip install requests --quiet");
+    string cmd = "python3 vt_scan.py -file \"" + filePath + "\" -key \"" + apiKey + "\"";
 
+    cout << "\n[+] Running VirusTotal scan...\nCMD = " << cmd << endl;
+    return system(cmd.c_str()) == 0;
+}
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
+    CLI_Interface cli;
+    if (!cli.CLIRun(argc, argv) || argc < 7) return 1;
 
-    LoadAPI mLA;
-    std::string APIVAL;
-    bool apibool = mLA.APILoad("Paste_VT_API_Key.txt", APIVAL);
-    if (!apibool) {
-        std::cout << "Please enter valid API key!" << std::endl;
-    }
-    
-    CLI_Interface cliI;
-    if (!cliI.CLIRun(argc, argv)) {
-        return 0;
-    }
-    std::string JSONfilePath = argv[4];
-    std::string SourcefilePath = argv[2];
-    std::string StubfilePath = argv[6];
+    string sourceFile = argv[2];
+    string jsonFile = argv[4];
+    string stubFile = argv[6];
 
+    LoadAPI apiLoader;
+    string APIKey;
+    apiLoader.APILoad("Paste_VT_API_Key.txt", APIKey);
 
-    JSONConfigManager mJCM;
-    SourceReplace mSR;
-    StubManager mStubR;
+    if (!PrependSourceHeader(sourceFile)) return 1;
 
-    bool res = PrependSourceHeader(SourcefilePath);
-    if (!res) {
-        std::cout << "Error prepending" << std::endl;
-    }
+    JSONConfigManager jsonManager;
+    if (!jsonManager.LoadConfig(jsonFile)) return 1;
 
+    vector<pair<string, string>> APIList = jsonManager.getAPIList();
+    SourceReplace replacer;
+    replacer.RenameText(sourceFile, APIList);
 
-    mJCM.LoadConfig(JSONfilePath);
-    std::vector<std::pair<std::string, std::string>> APIList = mJCM.getAPIList();
-    mSR.RenameText(SourcefilePath, APIList);
+    vector<APIStruct> apiStructs;
+    for (auto& api : APIList)
+        apiStructs.push_back(jsonManager.getAPIStruct(api.first));
 
-    std::vector<APIStruct> apiSList;
-    for (auto const& api : APIList) {
-        std::string apiName = api.first; 
-        APIStruct apiS = mJCM.getAPIStruct(apiName);
-        apiSList.push_back(apiS);
-    }
+    StubManager stubWriter;
+    stubWriter.WriteAllStubs(sourceFile, APIList, apiStructs, stubFile);
 
+    if (!CompileGeneratedCode(sourceFile)) return 1;
 
+    bool runVT = false;
+    for (int i = 1; i < argc; ++i)
+        if (string(argv[i]) == "-v") { runVT = true; break; }
 
-    mStubR.WriteAllStubs(SourcefilePath, APIList, apiSList, StubfilePath);
-
-    CompileGeneratedCode(SourcefilePath);
+    if (runVT && !APIKey.empty())
+        RunVirusTotalScan("output.exe", APIKey);
 
     return 0;
 }
