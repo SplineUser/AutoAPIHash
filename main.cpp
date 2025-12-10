@@ -3,6 +3,7 @@
 #include "Components/SourceComponent/SourceManager.h"
 #include "Components/StubComponent/StubManager.h"
 #include "Components/CLIComponent/CLI_Interface.h"
+#include "Helper/LoadAPI.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -46,6 +47,13 @@ bool CompileGeneratedCode(const std::string& cppFile) {
 
 
 int main(int argc, char* argv[]) {
+
+    LoadAPI mLA;
+    std::string APIVAL;
+    bool apibool = mLA.APILoad("Paste_VT_API_Key.txt", APIVAL);
+    if (!apibool) {
+        std::cout << "Please enter valid API key!" << std::endl;
+    }
     
     CLI_Interface cliI;
     if (!cliI.CLIRun(argc, argv)) {

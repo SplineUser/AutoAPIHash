@@ -117,6 +117,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)Components;$(ProjectDir)Externals</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +135,7 @@
     <ClCompile Include="Components\SourceComponent\SourceManager.cpp" />
     <ClCompile Include="Components\StubComponent\StubInternals.cpp" />
     <ClCompile Include="Components\StubComponent\StubManager.cpp" />
+    <ClCompile Include="Helper\LoadAPI.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +148,7 @@
     <ClInclude Include="Components\SourceComponent\SourceManager.h" />
     <ClInclude Include="Components\StubComponent\StubInternals.h" />
     <ClInclude Include="Components\StubComponent\StubManager.h" />
+    <ClInclude Include="Helper\LoadAPI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
